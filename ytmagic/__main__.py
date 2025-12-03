@@ -9,7 +9,7 @@ License: MIT
 
 # -------------------- METADATA --------------------
 __title__ = "ytmagic"
-__version__ = "1.3.0"
+__version__ = "1.3.1"
 __author__ = "Owais Shafi"
 __license__ = "MIT"
 # -------------------------------------------------
@@ -160,17 +160,17 @@ Examples:
 
    yt URL1 URL2 URL3 
 
-4) Convert to MP3(Audio only) and Download to Music folder:
+4) Convert to MP3(Audio only) and save to Music folder(user-specified path):
    
    yt -a -p ~/Music URL1 URL2 URL3 
 
-5) Download videos in different Qualities to custom folder: 
+5) Download videos in different Qualities to videos folder(user-specified path):
 
    yt -q 720 -p ~/Videos URL1 URL2 URL3 
    
    yt -q 360 -p ~/Videos URL1 URL2 URL3 
 
-    yt -q best -p ~/Videos URL1 URL2 URL3
+   yt -q best -p ~/Videos URL1 URL2 URL3
 
 6) Show available Qualities/formats for multiple videos:
    
@@ -191,7 +191,7 @@ Project: https://pypi.org/project/ytmagic/
 
     parser.add_argument("urls", nargs="+", help="One or more video URLs")
     parser.add_argument("-q", "--quality", default="best", help="Choose Video quality (default: best)")
-    parser.add_argument("-p", "--path", default=str(Path.home() / "Downloads"), help="Download to a custom path (default: ~/Downloads)")
+    parser.add_argument("-p", "--path", default=str(Path.home() / "Downloads"), help="Download to a user-specified path or folder(auto save to ~/Downloads)" )
     parser.add_argument("-a", "--audio", action="store_true", help="Download Audio only (MP3)")
     parser.add_argument("-v", "--version", action="version", version=f"{__title__} {__version__}", help="Show program version and exit" )
     parser.add_argument("-r", "--resume", action="store_true", help="Resume interrupted downloads")
