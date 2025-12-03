@@ -9,7 +9,7 @@ License: MIT
 
 # -------------------- METADATA --------------------
 __title__ = "ytmagic"
-__version__ = "1.3.1"
+__version__ = "1.3.2"
 __author__ = "Owais Shafi"
 __license__ = "MIT"
 # -------------------------------------------------
@@ -152,7 +152,7 @@ Examples:
   
    yt -v 
 
-2) Download a video in best quality (auto save to Downloads folder):
+2) Download a video in best quality and save to Downloads folder:
   
    yt https://youtu.be/VIDEO_URL 
 
@@ -191,7 +191,7 @@ Project: https://pypi.org/project/ytmagic/
 
     parser.add_argument("urls", nargs="+", help="One or more video URLs")
     parser.add_argument("-q", "--quality", default="best", help="Choose Video quality (default: best)")
-    parser.add_argument("-p", "--path", default=str(Path.home() / "Downloads"), help="Download to a user-specified path or folder(auto save to ~/Downloads)" )
+    parser.add_argument("-p", "--path", default=str(Path.home() / "Downloads"), help="Download to a user-specified path or folder(Default: ~/Downloads)" )
     parser.add_argument("-a", "--audio", action="store_true", help="Download Audio only (MP3)")
     parser.add_argument("-v", "--version", action="version", version=f"{__title__} {__version__}", help="Show program version and exit" )
     parser.add_argument("-r", "--resume", action="store_true", help="Resume interrupted downloads")
