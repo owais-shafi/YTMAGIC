@@ -6,10 +6,10 @@ It works on **Linux**, **macOS**, and **Windows**.
 
 ## 🧠 What Can It Do?
 
-- ✅ Download full video with best quality
-- 🎧 Download **audio only** and convert it to MP3
+- ✅ Download one or multiple videos at once in best available quality
+- 🎧 Convert and download videos as audio-only (MP3)
 - 📥 Choose specific video quality like 360p, 720p, 1080p, best
-- 📂 Save to a custom folder or default to `~/Downloads`
+- 📂 Choose your own download location or save automatically to ~/Downloads
 - 🔁 Resume interrupted downloads
 - 📊 Show all available qualities/formats for one or more links
 
@@ -39,7 +39,7 @@ pipx install --force --editable .
 
 ```
 
-Upgrade ytmagic to latest version:
+**Upgrade ytmagic to latest version:**
 
 ```bash
 pipx upgrade ytmagic
@@ -55,7 +55,7 @@ pip install --upgrade ytmagic
 
 ## 📦 Dependencies
 
-To use the `-a` (audio-only MP3) option, `ffmpeg` must be installed on your system.
+To convert videos to MP3(audio only), `ffmpeg` must be installed on your system.
 
 ### ✅ Install `ffmpeg`
 
@@ -82,6 +82,20 @@ To use the `-a` (audio-only MP3) option, `ffmpeg` must be installed on your syst
   ```bash
   choco install ffmpeg
   ```
+
+---
+
+## ⚙️ Command-Line Options
+
+| Option              | Description                                                             |
+| ------------------- | ----------------------------------------------------------------------- |
+| `urls` (positional) | One or more video URLs (YouTube, Instagram, Facebook, TikTok, etc.)     |
+| `-q`, `--quality`   | Video quality: `360`, `480`, `720`, `1080`, or `best` (default: `best`) |
+| `-p`, `--path`      | Path to save downloaded file (default: `~/Downloads`)                   |
+| `-a`, `--audio`     | Download audio only and convert to MP3 (requires FFmpeg)                |
+| `-f`, `--formats`   | Show available qualities/formats for all given URLs                     |
+| `-r`, `--resume`    | Resume interrupted downloads                                            |
+| `-v`, `--version`   | Show ytmagic version                                                    |
 
 ---
 
@@ -148,20 +162,6 @@ yt [options] [URL1... URLn]
 ```bash
    yt --resume URL1 URL2 URL3
 ```
-
----
-
-## ⚙️ Command-Line Options
-
-| Option              | Description                                                             |
-| ------------------- | ----------------------------------------------------------------------- |
-| `urls` (positional) | One or more video URLs (YouTube, Instagram, Facebook, TikTok, etc.)     |
-| `-q`, `--quality`   | Video quality: `360`, `480`, `720`, `1080`, or `best` (default: `best`) |
-| `-p`, `--path`      | Path to save downloaded file (default: `~/Downloads`)                   |
-| `-a`, `--audio`     | Download audio only and convert to MP3 (requires FFmpeg)                |
-| `-f`, `--formats`   | Show available qualities/formats for all given URLs                     |
-| `-r`, `--resume`    | Resume interrupted downloads                                            |
-| `-v`, `--version`   | Show ytmagic version                                                    |
 
 ---
 
