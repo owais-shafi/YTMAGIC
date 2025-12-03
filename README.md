@@ -26,7 +26,7 @@ pipx install ytmagic
 Or for local testing (developer mode):
 
 ```bash
-git clone https://github.com/owais-shafi/Yt_Magic.git
+git clone https://github.com/owais-shafi/YTMAGIC.git
 cd ytmagic
 pipx install --force --editable .
 ````
@@ -38,32 +38,45 @@ pipx install --force --editable .
 Basic command format:
 
 ```bash
-ytmagic [options] URL1 [URL2 ... URLn]
+yt [options] URL1 [URL2 ... URLn]
 ```
 
 ### 🔤 Examples
 
 ```bash
-ytmagic https://youtu.be/example1
-# ▶️ Downloads best video+audio to ~/Downloads
+1) Show the version of ytmagic:
 
-ytmagic https://youtu.be/example2 -q 720
-# ⬇️ Downloads 720p video
+   yt -v
 
-ytmagic https://youtu.be/example3 -a
-# 🎵 Downloads and converts audio to MP3
+2) Download a video in best quality (auto save to Downloads folder):
 
-ytmagic -a -p ~/Music https://youtu.be/example4
-# 🎧 Downloads MP3 and saves it in ~/Music
+   yt https://youtu.be/VIDEO_URL
 
-ytmagic https://youtu.be/example5 https://youtu.be/example6
-# ⬇️ Downloads multiple videos in order
+3) Download multiple videos in best quality to Downloads folder:
 
-ytmagic -f https://youtu.be/example7 https://youtu.be/example8
-# 📊 Shows available qualities/formats for multiple videos
+   yt URL1 URL2 URL3
 
-ytmagic --resume https://youtu.be/example9
-# 🔁 Resumes interrupted download
+4) Convert to MP3(Audio only) and Download to Music folder:
+
+   yt -a -p ~/Music URL1 URL2 URL3
+
+5) Download videos in different Qualities to a user-specified folder/Path:
+
+   yt -q 720 -p ~/Videos URL1 URL2 URL3
+
+   yt -q 360 -p ~/Videos URL1 URL2 URL3
+
+   yt -q best -p ~/Videos URL1 URL2 URL3
+
+6) Show available Qualities/formats for multiple videos:
+
+   yt -f URL1 URL2 URL3
+
+7) Resume interrupted downloads:
+
+   yt -r URL1 URL2 URL3
+
+   yt --resume URL1 URL2 URL3
 ```
 
 ---
@@ -74,10 +87,10 @@ ytmagic --resume https://youtu.be/example9
 | ------------------- | ----------------------------------------------------------------------- |
 | `urls` (positional) | One or more video URLs (YouTube, Instagram, Facebook, TikTok, etc.)     |
 | `-q`, `--quality`   | Video quality: `360`, `480`, `720`, `1080`, or `best` (default: `best`) |
-| `-p`, `--path`      | Folder to save downloaded file (default: `~/Downloads`)                 |
+| `-p`, `--path`      | Path to save downloaded file (default: `~/Downloads`)                   |
 | `-a`, `--audio`     | Download audio only and convert to MP3 (requires FFmpeg)                |
-| `-f`, `--formats`   | Show available formats for all given URLs                               |
-| `--resume`          | Resume interrupted downloads                                            |
+| `-f`, `--formats`   | Show available qualities/formats for all given URLs                     |
+| `-r`, `--resume`    | Resume interrupted downloads                                            |
 | `-v`, `--version`   | Show ytmagic version                                                    |
 
 ---
@@ -112,8 +125,6 @@ To use the `-a` (audio-only MP3) option, `ffmpeg` must be installed on your syst
   choco install ffmpeg
   ```
 
-- Or [download manually](https://www.gyan.dev/ffmpeg/builds/) and add it to your system PATH.
-
 ---
 
 ## 📂 Default Output Folder
@@ -131,75 +142,28 @@ If no path is given using `-p`, ytmagic saves all downloads to:
 - Combine options for multiple features:
 
 ```bash
-ytmagic -a -q best -p ~/Music https://youtu.be/example1 https://youtu.be/example2
+yt -a -p ~/Music URL1 URL2
 ```
 
 - This downloads multiple best-quality audio files, converts them to MP3, and saves them to `~/Music`.
 
-- Use `-f` before downloading if you want to check available formats:
+```bash
+yt -q 720 -p ~/Videos URL1 URL2
+```
+
+- This downloads multiple 720p-quality videos, and saves them to `~/Videos`.
+
+- Use `-f` before downloading if you want to check available formats/qualities:
 
 ```bash
-ytmagic -f https://youtu.be/example1 https://youtu.be/example2
+yt -f URL1 URL2
 ```
 
 - Use `--resume` to continue interrupted downloads:
 
 ```bash
-ytmagic --resume https://youtu.be/example1
+yt -r URL1 URL2 URL3
 ```
-
----
-
-## 📱 Run on Android (via Termux)
-
-Yes — `ytmagic` works on Android too using [Termux](https://f-droid.org/packages/com.termux/)!
-
-### ✅ Steps to Set It Up
-
-1. Install Termux from Play store.
-2. Open Termux and run:
-
-```bash
-pkg update && pkg upgrade
-pkg install python ffmpeg termux-api
-pip install pipx
-pipx ensurepath
-source ~/.bashrc  # Or restart Termux
-```
-
-3.Install ytmagic:
-
-```bash
-pipx install ytmagic
-```
-
-4.Grant storage access to Termux:
-
-```bash
-termux-setup-storage
-```
-
-5.Save downloads to phone storage:
-
-```bash
-ytmagic -p /sdcard/Download/ <URL>
-```
-
-6.Make media files appear in apps:
-
-```bash
-termux-media-scan /sdcard/Download/
-```
-
-7.(Optional) Add handy shortcuts in `~/.bashrc`:
-
-```bash
-alias sc='termux-media-scan /sdcard/Music/'
-alias yt='ytmagic -p /sdcard/Download/'
-source ~/.bashrc
-```
-
-Run `sc` after every download so media files appear in music/video apps.
 
 ---
 
