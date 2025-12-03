@@ -1,13 +1,8 @@
-Here’s your **copy-paste ready README** for `ytmagic` with **all current features included**:
-
-````markdown
 # 🎬 ytmagic
 
 `ytmagic` is a simple command-line tool that lets anyone download videos or extract audio from **YouTube, Instagram, Facebook, TikTok, X, and more** using [yt-dlp](https://github.com/yt-dlp/yt-dlp) — no technical knowledge needed.
 
 It works on **Linux**, **macOS**, and **Windows**.
-
----
 
 ## 🧠 What Can It Do?
 
@@ -15,10 +10,8 @@ It works on **Linux**, **macOS**, and **Windows**.
 - 🎧 Download **audio only** and convert it to MP3
 - 📥 Choose specific video quality like 360p, 720p, 1080p
 - 📂 Save to a custom folder or default to `~/Downloads`
-- 🔁 **Resume interrupted downloads**
-- 📊 **Show all available formats** for one or more links
-
----
+- 🔁 Resume interrupted downloads
+- 📊 Show all available qualities/formats for one or more links
 
 ## 🔧 Installation
 
@@ -26,10 +19,9 @@ Make sure you have **Python 3.7+**, `ffmpeg`, and `pip/pipx` installed.
 
 Install `ytmagic` globally using `pipx`:
 
-```bash
+````bash
 pipx install ytmagic
-```
-````
+
 
 Or for local testing (developer mode):
 
@@ -37,11 +29,9 @@ Or for local testing (developer mode):
 git clone https://github.com/owais-shafi/Yt_Magic.git
 cd ytmagic
 pipx install --force --editable .
-```
+````
 
 ✅ Now you can use the `ytmagic` (or `yt`) command from anywhere in your terminal.
-
----
 
 ## 🎯 How to Use
 
