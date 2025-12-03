@@ -9,7 +9,7 @@ License: MIT
 
 # -------------------- METADATA --------------------
 __title__ = "ytmagic"
-__version__ = "1.2.9"
+__version__ = "1.3.0"
 __author__ = "Owais Shafi"
 __license__ = "MIT"
 # -------------------------------------------------
@@ -169,6 +169,8 @@ Examples:
    yt -q 720 -p ~/Videos URL1 URL2 URL3 
    
    yt -q 360 -p ~/Videos URL1 URL2 URL3 
+
+    yt -q best -p ~/Videos URL1 URL2 URL3
 
 6) Show available Qualities/formats for multiple videos:
    
