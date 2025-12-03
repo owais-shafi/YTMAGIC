@@ -1,0 +1,53 @@
+# -------------------------
+# Virtual Environments
+# -------------------------
+venv/
+.env/
+.envrc/
+
+# -------------------------
+# Build & Distribution
+# -------------------------
+build/
+dist/
+*.spec
+
+# -------------------------
+# Python Cache Files
+# -------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# -------------------------
+# Package Metadata
+# -------------------------
+*.egg-info/
+.eggs/
+
+# -------------------------
+# Logs & Temp Files
+# -------------------------
+*.log
+*.tmp
+*.temp
+
+# -------------------------
+# IDE / Editor Configs
+# -------------------------
+.vscode/
+.idea/
+*.swp
+
+# -------------------------
+# OS Generated Files
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Test / Coverage Artifacts
+# -------------------------
+.coverage
+htmlcov/
+.pytest_cache/
