@@ -17,20 +17,38 @@ It works on **Linux**, **macOS**, and **Windows**.
 
 Make sure you have **Python 3.7+**, `ffmpeg`, and `pip/pipx` installed.
 
-Install `ytmagic` globally using `pip/pipx`:
+Install `ytmagic` using `pip/pipx`:
 
 ```bash
-pip install ytmagic
+pipx install ytmagic
 
 ```
 
-Or for local testing (developer mode):
+Or
+
+```bash
+pip install ytmagic
+```
+
+for local testing (developer mode):
 
 ```bash
 git clone https://github.com/owais-shafi/YTMAGIC.git
 cd ytmagic
 pipx install --force --editable .
 
+```
+
+Upgrade ytmagic to latest version:
+
+```bash
+pipx upgrade ytmagic
+```
+
+Or
+
+```bash
+pip install --upgrade ytmagic
 ```
 
 ✅ Now you can use the `ytmagic` (or `yt`) command from anywhere in your terminal.
