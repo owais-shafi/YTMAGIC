@@ -1,6 +1,6 @@
 [project]
 name = "ytmagic"
-version = "1.2.9
+version = "1.2.9"
 description = "Download videos or extract audio from YouTube, Instagram, Facebook, TikTok, X (Twitter), and more — easily and fast."
 readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = ">=3.7"
