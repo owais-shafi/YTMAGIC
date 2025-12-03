@@ -35,6 +35,38 @@ pipx install --force --editable .
 
 ✅ Now you can use the `ytmagic` (or `yt`) command from anywhere in your terminal.
 
+## 📦 Dependencies
+
+To use the `-a` (audio-only MP3) option, `ffmpeg` must be installed on your system.
+
+### ✅ Install `ffmpeg`
+
+- **Linux (Debian/Ubuntu or any other distro using their own package manager):**
+
+  ```bash
+  sudo apt install ffmpeg
+  ```
+
+- **Linux (Arch):**
+
+  ```bash
+  sudo pacman -S ffmpeg
+  ```
+
+- **macOS (with Homebrew):**
+
+  ```bash
+  brew install ffmpeg
+  ```
+
+- **Windows (with Chocolatey):**
+
+  ```bash
+  choco install ffmpeg
+  ```
+
+---
+
 ## 🎯 How to Use
 
 Basic command format:
@@ -73,9 +105,13 @@ yt [options] [URL1... URLn]
 
 ```bash
    yt -q 720 -p ~/Videos URL1 URL2 URL3
+```
 
+```bash
    yt -q 360 -p ~/Videos URL1 URL2 URL3
+```
 
+```bash
    yt -q best -p ~/Videos URL1 URL2 URL3
 ```
 
@@ -89,7 +125,9 @@ yt [options] [URL1... URLn]
 
 ```bash
    yt -r URL1 URL2 URL3
+```
 
+```bash
    yt --resume URL1 URL2 URL3
 ```
 
@@ -106,38 +144,6 @@ yt [options] [URL1... URLn]
 | `-f`, `--formats`   | Show available qualities/formats for all given URLs                     |
 | `-r`, `--resume`    | Resume interrupted downloads                                            |
 | `-v`, `--version`   | Show ytmagic version                                                    |
-
----
-
-## 📦 Dependencies
-
-To use the `-a` (audio-only MP3) option, `ffmpeg` must be installed on your system.
-
-### ✅ Install `ffmpeg`
-
-- **Linux (Debian/Ubuntu or any other distro using their own package manager):**
-
-  ```bash
-  sudo apt install ffmpeg
-  ```
-
-- **Linux (Arch):**
-
-  ```bash
-  sudo pacman -S ffmpeg
-  ```
-
-- **macOS (with Homebrew):**
-
-  ```bash
-  brew install ffmpeg
-  ```
-
-- **Windows (with Chocolatey):**
-
-  ```bash
-  choco install ffmpeg
-  ```
 
 ---
 
