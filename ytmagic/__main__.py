@@ -9,7 +9,7 @@ License: MIT
 
 # -------------------- METADATA --------------------
 __title__ = "ytmagic"
-__version__ = "1.3.3"
+__version__ = "1.3.4"
 __author__ = "Owais Shafi"
 __license__ = "MIT"
 # -------------------------------------------------
