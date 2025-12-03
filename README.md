@@ -8,7 +8,7 @@ It works on **Linux**, **macOS**, and **Windows**.
 
 - ✅ Download full video with best quality
 - 🎧 Download **audio only** and convert it to MP3
-- 📥 Choose specific video quality like 360p, 720p, 1080p
+- 📥 Choose specific video quality like 360p, 720p, 1080p, best
 - 📂 Save to a custom folder or default to `~/Downloads`
 - 🔁 Resume interrupted downloads
 - 📊 Show all available qualities/formats for one or more links
@@ -17,11 +17,12 @@ It works on **Linux**, **macOS**, and **Windows**.
 
 Make sure you have **Python 3.7+**, `ffmpeg`, and `pip/pipx` installed.
 
-Install `ytmagic` globally using `pipx`:
+Install `ytmagic` globally using `pip/pipx`:
 
-````bash
-pipx install ytmagic
+```bash
+pip install ytmagic
 
+```
 
 Or for local testing (developer mode):
 
@@ -29,7 +30,8 @@ Or for local testing (developer mode):
 git clone https://github.com/owais-shafi/YTMAGIC.git
 cd ytmagic
 pipx install --force --editable .
-````
+
+```
 
 ✅ Now you can use the `ytmagic` (or `yt`) command from anywhere in your terminal.
 
@@ -38,42 +40,54 @@ pipx install --force --editable .
 Basic command format:
 
 ```bash
-yt [options] URL1 [URL2 ... URLn]
+yt [options] [URL1... URLn]
 ```
 
 ### 🔤 Examples
 
+1 Show the version of ytmagic:
+
 ```bash
-1) Show the version of ytmagic:
-
    yt -v
+```
 
-2) Download a video in best quality (auto save to Downloads folder):
+2 Download a video in best quality (auto save to Downloads folder):
 
+```bash
    yt https://youtu.be/VIDEO_URL
+```
 
-3) Download multiple videos in best quality to Downloads folder:
+3 Download multiple videos in best quality to Downloads folder:
 
+```bash
    yt URL1 URL2 URL3
+```
 
-4) Convert to MP3(Audio only) and Download to Music folder:
+4 Convert to MP3(Audio only) and Download to Music folder:
 
+```bash
    yt -a -p ~/Music URL1 URL2 URL3
+```
 
-5) Download videos in different Qualities to a user-specified folder/Path:
+5 Download videos in different Qualities to a user-specified folder/Path:
 
+```bash
    yt -q 720 -p ~/Videos URL1 URL2 URL3
 
    yt -q 360 -p ~/Videos URL1 URL2 URL3
 
    yt -q best -p ~/Videos URL1 URL2 URL3
+```
 
-6) Show available Qualities/formats for multiple videos:
+6 Show available Qualities/formats for multiple videos:
 
+```bash
    yt -f URL1 URL2 URL3
+```
 
-7) Resume interrupted downloads:
+7 Resume interrupted downloads:
 
+```bash
    yt -r URL1 URL2 URL3
 
    yt --resume URL1 URL2 URL3
@@ -101,7 +115,7 @@ To use the `-a` (audio-only MP3) option, `ffmpeg` must be installed on your syst
 
 ### ✅ Install `ffmpeg`
 
-- **Linux (Debian/Ubuntu):**
+- **Linux (Debian/Ubuntu or any other distro using their own package manager):**
 
   ```bash
   sudo apt install ffmpeg
