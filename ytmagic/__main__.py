@@ -9,7 +9,7 @@ License: MIT
 
 # -------------------- METADATA --------------------
 __title__ = "ytmagic"
-__version__ = "1.3.4"
+__version__ = "v1"
 __author__ = "Owais Shafi"
 __license__ = "MIT"
 # -------------------------------------------------
@@ -33,9 +33,8 @@ quality_map = {
 }
 
 # -------- FALLBACK CLIENT PROFILES --------
-# Force a working YouTube client to suppress JS/runtime warnings
 CLIENT_PROFILES = [
-    {"extractor_args": {"youtube": {"player_client": "android"}}},  # default fallback
+    {"extractor_args": {"youtube": {"player_client": "android"}}},
     {"extractor_args": {"youtube": {"player_client": "web"}}},
     {"extractor_args": {"youtube": {"player_client": "ios"}}},
 ]
@@ -45,10 +44,11 @@ def show_formats(url):
     ydl_opts = {
         "quiet": True,
         "no_warnings": True,
-        "extractor_args": {"youtube": {"player_client": "android"}},  # suppress warning
+        "extractor_args": {"youtube": {"player_client": "android"}},
     }
     with YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(url, download=False)
+
     formats = info.get("formats", [])
     if not formats:
         console.print("[red]No formats found for URL:[/red]", url)
@@ -69,15 +69,24 @@ def show_formats(url):
         console.print(f"{fid:>8}  {ext:>4}  {res:>9}  {note:>20}")
 
 # -------- MAIN DOWNLOAD FUNCTION --------
-def download_video(url, quality, download_path, audio_only=False, resume=False):
+def download_video(url, quality, download_path, audio_only=False, resume=False, playlist=False):
     os.makedirs(download_path, exist_ok=True)
-    output_template = os.path.join(download_path, "%(title)s.%(ext)s")
+
+    if playlist:
+        output_template = os.path.join(
+            download_path,
+            "%(playlist_title)s",
+            "%(playlist_index)s - %(title)s.%(ext)s"
+        )
+    else:
+        output_template = os.path.join(download_path, "%(title)s.%(ext)s")
+
     primary_format = "bestaudio/best" if audio_only else quality_map.get(quality, "best")
     fallback_format = "best"
 
     base_opts = {
         "outtmpl": output_template,
-        "noplaylist": True,
+        "noplaylist": not playlist,
         "quiet": True,
         "no_warnings": True,
         "merge_output_format": "mp4",
@@ -118,7 +127,6 @@ def download_video(url, quality, download_path, audio_only=False, resume=False):
 
         base_opts["progress_hooks"] = [hook]
 
-        # -------- SMART FALLBACK LOOP --------
         for attempt, profile in enumerate(CLIENT_PROFILES, start=1):
             ydl_opts = {**base_opts, **profile, "format": primary_format}
             try:
@@ -131,7 +139,6 @@ def download_video(url, quality, download_path, audio_only=False, resume=False):
                 elif attempt == len(CLIENT_PROFILES):
                     console.print("⚠️  All clients failed. Using safest fallback format...")
 
-        # -------- FINAL HARD FALLBACK --------
         base_opts["format"] = fallback_format
         try:
             with YoutubeDL(base_opts) as ydl:
@@ -148,39 +155,62 @@ def main():
         epilog=f"""
 Examples:
 
-1) Show the version of ytmagic:
-  
+1) Show the installed version:
+
    yt -v 
 
-2) Download a video in best quality and save to Downloads folder:
-  
-   yt https://youtu.be/VIDEO_URL 
+2) Download single video(best quality):
 
-3) Download multiple videos in best quality to Downloads folder:
+   yt URL
+
+3) Download multiple videos(best quality):
 
    yt URL1 URL2 URL3 
 
-4) Convert to MP3(Audio only) and save to Music folder(user-specified path):
-   
-   yt -a -p ~/Music URL1 URL2 URL3 
+4) Download a full playlist or multiple playlists(best quality):
 
-5) Download videos in different Qualities to videos folder(user-specified path):
+   yt --playlist PLAYLIST_URL1 PLAYLIST_URL2
 
-   yt -q 720 -p ~/Videos URL1 URL2 URL3 
-   
-   yt -q 360 -p ~/Videos URL1 URL2 URL3 
+   yt -pl PLAYLIST_URL1 PLAYLIST_URL2
 
-   yt -q best -p ~/Videos URL1 URL2 URL3
+5) Convert to MP3(best audio audio quality):
 
-6) Show available Qualities/formats for multiple videos:
-   
-   yt -f URL1 URL2 URL3 
+   yt -a URL1 URL2 URL3
 
-7) Resume interrupted downloads:
-   
-   yt -r URL1 URL2 URL3
-   
-   yt --resume URL1 URL2 URL3
+6) Convert a full playlist or multiple playlists to MP3(best audio quality):
+
+   yt --playlist -a PLAYLIST_URL1 PLAYLIST_URL2
+
+   yt -pl -a PLAYLIST_URL1 PLAYLIST_URL2
+
+7) Choose quality:
+
+   yt -q 720 URL
+
+   yt -q 360 URL1 URL2
+
+   yt -q 480 -pl PLAYLIST_URL1 PLAYLIST_URL2
+
+8) Set custom download path:
+
+    yt -p /path/to/folder URL1 URL2
+
+    yt -a -p /path/to/Music/folder URL1 URL2
+
+    yt -a -p ~/Music URL1 URL2
+
+    yt -pl -p ~/Videos PLAYLIST_URL1 PLAYLIST_URL2   
+
+9) Show formats/qualities:
+
+   yt -f URL
+
+10) Resume interrupted download:
+
+   yt -r URL1 URL2
+
+
+
 
 Version: {__version__}
 Author: {__author__}
@@ -191,22 +221,23 @@ Project: https://pypi.org/project/ytmagic/
 
     parser.add_argument("urls", nargs="+", help="One or more video URLs")
     parser.add_argument("-q", "--quality", default="best", help="Choose Video quality (default: best)")
-    parser.add_argument("-p", "--path", default=str(Path.home() / "Downloads"), help="Download to a user-specified path or folder(Default: ~/Downloads)" )
+    parser.add_argument("-p", "--path", default=str(Path.home() / "Downloads"),
+                        help="Set the Download path (default: ~/Downloads (Downloads folder in your System))")
     parser.add_argument("-a", "--audio", action="store_true", help="Download Audio only (MP3)")
-    parser.add_argument("-v", "--version", action="version", version=f"{__title__} {__version__}", help="Show program version and exit" )
+    parser.add_argument("-v", "--version", action="version",
+                        version=f"{__title__} {__version__}", help="Show program's version number and exit")
     parser.add_argument("-r", "--resume", action="store_true", help="Resume interrupted downloads")
     parser.add_argument("-f", "--formats", action="store_true", help="Show available qualities/formats")
+    parser.add_argument("-pl","--playlist", action="store_true", help="Enable playlist download")
 
     args = parser.parse_args()
 
-    # Format mode
     if args.formats:
         for idx, url in enumerate(args.urls, start=1):
             console.print(f"\n[bold yellow]Formats for ({idx}/{len(args.urls)}):[/bold yellow] {url}")
             show_formats(url)
         sys.exit(0)
 
-    # Download mode
     for idx, url in enumerate(args.urls, start=1):
         console.print(f"\n[bold cyan]({idx}/{len(args.urls)}) Downloading:[/bold cyan] {url}")
         download_video(
@@ -214,7 +245,8 @@ Project: https://pypi.org/project/ytmagic/
             args.quality,
             args.path,
             audio_only=args.audio,
-            resume=args.resume
+            resume=args.resume,
+            playlist=args.playlist
         )
 
 if __name__ == "__main__":

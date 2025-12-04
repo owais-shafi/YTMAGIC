@@ -1,65 +1,80 @@
+Perfect — I’ve updated your README to **fully match your latest `__main__.py` (v1.3.5)** and added **complete playlist support documentation** without removing any existing features.
+This is **100% copy-paste ready** ✅
+
+---
+
 # 🎬 ytmagic
 
-`ytmagic` is a simple command-line tool that lets anyone download videos or extract audio from **YouTube, Instagram, Facebook, TikTok, X, and more** using [yt-dlp](https://github.com/yt-dlp/yt-dlp) — no technical knowledge needed.
+`ytmagic` is a powerful yet simple command-line tool that lets anyone download videos or extract audio from **YouTube, Instagram, Facebook, TikTok, X, and more** using [yt-dlp](https://github.com/yt-dlp/yt-dlp) — no technical knowledge needed.
 
 It works on **Linux**, **macOS**, and **Windows**.
+
+---
 
 ## 🧠 What Can It Do?
 
 - ✅ Download one or multiple videos at once in best available quality
-- 🎧 Convert and download videos as audio-only (MP3)
-- 📥 Choose specific video quality like 360p, 720p, 1080p, best
-- 📂 Choose your own download location or save automatically to ~/Downloads
+- 🎧 Convert and download videos as **audio-only (MP3)**
+- 📥 Choose specific video quality like **360p, 480p, 720p, 1080p, or best**
+- 📂 Choose your own download location or save automatically to `~/Downloads`
 - 🔁 Resume interrupted downloads
 - 📊 Show all available qualities/formats for one or more links
+- 📃 Download **full playlists or multiple playlists at once**
+- 🎵 Convert **entire playlists to MP3 automatically**
+
+---
 
 ## 🔧 Installation
 
-Make sure you have **Python 3.7+**, `ffmpeg`, and `pip/pipx` installed.
+Make sure you have **Python 3.7+**, `ffmpeg`, and `pip` or `pipx` installed.
 
-Install `ytmagic` using `pip/pipx`:
+### ✅ Install with `pipx` (Recommended)
 
 ```bash
 pipx install ytmagic
-
 ```
 
-Or
+Or with `pip`:
 
 ```bash
 pip install ytmagic
 ```
 
-for local testing (developer mode):
+### 🧪 Local Testing (Developer Mode)
 
 ```bash
 git clone https://github.com/owais-shafi/YTMAGIC.git
 cd ytmagic
 pipx install --force --editable .
-
 ```
 
-**Upgrade ytmagic to latest version:**
+### 🔁 Upgrade to Latest Version
+
+**Recommended**
 
 ```bash
 pipx upgrade ytmagic
 ```
 
-Or
+Or:
 
 ```bash
 pip install --upgrade ytmagic
 ```
 
-✅ Now you can use the `ytmagic` (or `yt`) command from anywhere in your terminal.
+✅ Now you can use the **`ytmagic` or `yt`** command from anywhere in your terminal.
+
+---
 
 ## 📦 Dependencies
 
-To convert videos to MP3(audio only), `ffmpeg` must be installed on your system.
+To convert videos to MP3 (audio-only mode), **`ffmpeg` must be installed**.
 
 ### ✅ Install `ffmpeg`
 
-- **Linux (Debian/Ubuntu or any other distro using their own package manager):**
+- **Installable on any Linux distributions using their respective package managers**
+
+- **Linux (Debian/Ubuntu):**
 
   ```bash
   sudo apt install ffmpeg
@@ -71,13 +86,13 @@ To convert videos to MP3(audio only), `ffmpeg` must be installed on your system.
   sudo pacman -S ffmpeg
   ```
 
-- **macOS (with Homebrew):**
+- **macOS (Homebrew):**
 
   ```bash
   brew install ffmpeg
   ```
 
-- **Windows (with Chocolatey):**
+- **Windows (Chocolatey):**
 
   ```bash
   choco install ffmpeg
@@ -89,13 +104,15 @@ To convert videos to MP3(audio only), `ffmpeg` must be installed on your system.
 
 | Option              | Description                                                             |
 | ------------------- | ----------------------------------------------------------------------- |
-| `urls` (positional) | One or more video URLs (YouTube, Instagram, Facebook, TikTok, etc.)     |
+| `urls` (positional) | One or more video or playlist URLs                                      |
 | `-q`, `--quality`   | Video quality: `360`, `480`, `720`, `1080`, or `best` (default: `best`) |
-| `-p`, `--path`      | Path to save downloaded file (default: `~/Downloads`)                   |
-| `-a`, `--audio`     | Download audio only and convert to MP3 (requires FFmpeg)                |
-| `-f`, `--formats`   | Show available qualities/formats for all given URLs                     |
+| `-p`, `--path`      | Set the download path (default: system Downloads folder)                |
+| `-a`, `--audio`     | Download audio-only and convert to MP3                                  |
+| `-f`, `--formats`   | Show available qualities/formats                                        |
 | `-r`, `--resume`    | Resume interrupted downloads                                            |
+| `-pl`, `--playlist` | Enable playlist download mode                                           |
 | `-v`, `--version`   | Show ytmagic version                                                    |
+| `-h`, `--help`      | Display help information                                                |
 
 ---
 
@@ -104,63 +121,121 @@ To convert videos to MP3(audio only), `ffmpeg` must be installed on your system.
 Basic command format:
 
 ```bash
-yt [options] [URL1... URLn]
+yt [options] [URL1 ... URLn]
 ```
 
-### 🔤 Examples
+---
 
-1 Show the version of ytmagic:
+## 📌 Examples
+
+### 1) Show the installed version
 
 ```bash
-   yt -v
+yt -v
 ```
 
-2 Download a video in best quality (auto save to Downloads folder):
+---
+
+### 2) Download a **single video** (best quality)
 
 ```bash
-   yt https://youtu.be/VIDEO_URL
+yt URL
 ```
 
-3 Download multiple videos in best quality to Downloads folder:
+---
+
+### 3) Download **multiple videos** (best quality)
 
 ```bash
-   yt URL1 URL2 URL3
+yt URL1 URL2 URL3
 ```
 
-4 Convert to MP3(Audio only) and Download to Music folder:
+---
+
+### 4) Download a **full playlist** or **multiple playlists** (best quality)
 
 ```bash
-   yt -a -p ~/Music URL1 URL2 URL3
+yt --playlist PLAYLIST_URL1 PLAYLIST_URL2
 ```
 
-5 Download videos in different Qualities to a user-specified folder/Path:
+or
 
 ```bash
-   yt -q 720 -p ~/Videos URL1 URL2 URL3
+yt -pl PLAYLIST_URL1 PLAYLIST_URL2
+```
+
+---
+
+### 5) Convert and download to **MP3 (best audio quality)**
+
+```bash
+yt -a URL1 URL2 URL3
+```
+
+---
+
+### 6) Convert a **full playlist (or multiple)** to **MP3**
+
+```bash
+yt --playlist -a PLAYLIST_URL1 PLAYLIST_URL2
+```
+
+or
+
+```bash
+yt -pl -a PLAYLIST_URL1 PLAYLIST_URL2
+```
+
+---
+
+### 7) Choose **video quality**
+
+```bash
+yt -q 720 URL
 ```
 
 ```bash
-   yt -q 360 -p ~/Videos URL1 URL2 URL3
+yt -q 360 URL1 URL2
 ```
 
 ```bash
-   yt -q best -p ~/Videos URL1 URL2 URL3
+yt -q 480 -pl PLAYLIST_URL1 PLAYLIST_URL2
 ```
 
-6 Show available Qualities/formats for multiple videos:
+---
+
+### 8) Set a **custom download path**
 
 ```bash
-   yt -f URL1 URL2 URL3
-```
-
-7 Resume interrupted downloads:
-
-```bash
-   yt -r URL1 URL2 URL3
+yt -p /path/to/folder URL1 URL2
 ```
 
 ```bash
-   yt --resume URL1 URL2 URL3
+yt -a -p /path/to/folder URL1 URL2
+```
+
+```bash
+yt -a -p ~/Music URL1 URL2
+```
+
+```bash
+yt -pl -p ~/Videos PLAYLIST_URL1 PLAYLIST_URL2
+```
+
+---
+
+### 9) Show all available **formats & qualities**
+
+```bash
+yt -f URL
+```
+
+---
+
+### 10) Resume an **interrupted download**
+
+```bash
+yt -r URL1 URL2
 ```
 
 ---
@@ -173,34 +248,40 @@ If no path is given using `-p`, ytmagic saves all downloads to:
 ~/Downloads
 ```
 
+(On Windows, this maps automatically to your system Downloads folder)
+
 ---
 
 ## 💡 Tips
 
-- Combine options for multiple features:
+- Combine options freely:
 
 ```bash
 yt -a -p ~/Music URL1 URL2
 ```
 
-- This downloads multiple best-quality audio files, converts them to MP3, and saves them to `~/Music`.
+- Download multiple 720p videos:
 
 ```bash
 yt -q 720 -p ~/Videos URL1 URL2
 ```
 
-- This downloads multiple 720p-quality videos, and saves them to `~/Videos`.
-
-- Use `-f` before downloading if you want to check available formats/qualities:
+- Check formats before downloading:
 
 ```bash
 yt -f URL1 URL2
 ```
 
-- Use `--resume` to continue interrupted downloads:
+- Resume large interrupted downloads:
 
 ```bash
 yt -r URL1 URL2 URL3
+```
+
+- Convert a full playlist to MP3:
+
+```bash
+yt -pl -a PLAYLIST_URL
 ```
 
 ---
@@ -210,6 +291,7 @@ yt -r URL1 URL2 URL3
 - [Python](https://www.python.org/)
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 - [ffmpeg](https://ffmpeg.org/)
+- [Rich](https://github.com/Textualize/rich)
 
 ---
 
