@@ -1,8 +1,3 @@
-Perfect — I’ve updated your README to **fully match your latest `__main__.py` (v1.3.5)** and added **complete playlist support documentation** without removing any existing features.
-This is **100% copy-paste ready** ✅
-
----
-
 # 🎬 ytmagic
 
 `ytmagic` is a powerful yet simple command-line tool that lets anyone download videos or extract audio from **YouTube, Instagram, Facebook, TikTok, X, and more** using [yt-dlp](https://github.com/yt-dlp/yt-dlp) — no technical knowledge needed.
