@@ -97,17 +97,17 @@ To convert videos to MP3 (audio-only mode), **`ffmpeg` must be installed**.
 
 ## ⚙️ Command-Line Options
 
-| Option              | Description                                                             |
-| ------------------- | ----------------------------------------------------------------------- |
-| `urls` (positional) | One or more video or playlist URLs                                      |
-| `-q`, `--quality`   | Video quality: `360`, `480`, `720`, `1080`, or `best` (default: `best`) |
-| `-p`, `--path`      | Set the download path (default: system Downloads folder)                |
-| `-a`, `--audio`     | Download audio-only and convert to MP3                                  |
-| `-f`, `--formats`   | Show available qualities/formats                                        |
-| `-r`, `--resume`    | Resume interrupted downloads                                            |
-| `-pl`, `--playlist` | Enable playlist download mode                                           |
-| `-v`, `--version`   | Show ytmagic version                                                    |
-| `-h`, `--help`      | Display help information                                                |
+| Option              | Description                                                            |
+| ------------------- | ---------------------------------------------------------------------- |
+| `urls` (positional) | One or more video or playlist URLs                                     |
+| `-q`, `--quality`   | Choose video quality: `360`, `480`, `720`, or `best` (default: `best`) |
+| `-p`, `--path`      | Set the download path (default: system Downloads folder)               |
+| `-a`, `--audio`     | Download audio-only and convert to MP3                                 |
+| `-f`, `--formats`   | Show available qualities/formats                                       |
+| `-r`, `--resume`    | Resume interrupted downloads                                           |
+| `-pl`, `--playlist` | Enable playlist download mode                                          |
+| `-v`, `--version`   | Show ytmagic version                                                   |
+| `-h`, `--help`      | Display help information                                               |
 
 ---
 
@@ -150,7 +150,7 @@ yt URL1 URL2 URL3
 ### 4) Download a **full playlist** or **multiple playlists** (best quality)
 
 ```bash
-yt --playlist PLAYLIST_URL1 PLAYLIST_URL2
+yt --playlist PLAYLIST_URL
 ```
 
 or
@@ -172,7 +172,7 @@ yt -a URL1 URL2 URL3
 ### 6) Convert a **full playlist (or multiple)** to **MP3**
 
 ```bash
-yt --playlist -a PLAYLIST_URL1 PLAYLIST_URL2
+yt --playlist -a PLAYLIST_URL
 ```
 
 or
